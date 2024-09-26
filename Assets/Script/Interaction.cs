@@ -10,7 +10,8 @@ public class Interaction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxRange))
         {
-            if (hit.collider.GetComponent<Interactive>() != null)
+            Interactive interactive = hit.collider.GetComponent<Interactive>();
+            if (interactive != null)
             {
                 if(!interactionUI.activeSelf)
                 {
@@ -19,7 +20,7 @@ public class Interaction : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    hit.collider.GetComponent<Interactive>().Interact();
+                    interactive.Interact();
                 }
             }
             else
