@@ -11,7 +11,7 @@ public class Interaction : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxRange))
         {
             Interactive interactive = hit.collider.GetComponent<Interactive>();
-            if (interactive != null)
+            if (interactive != null && interactive.enabled)
             {
                 if(!interactionUI.activeSelf)
                 {
