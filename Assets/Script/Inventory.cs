@@ -14,8 +14,8 @@ public class Inventory : MonoBehaviour
     {
         pages[piece] = true;
         currentPageCount += 1;
-        CheckCompletion();
         UpdateUI();
+        CheckCompletion();
     }
 
     private void CheckCompletion()
@@ -24,6 +24,7 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log("All pages obtained");
             FindObjectOfType<PortraitAssembly>().enabled = true;
+            pageCounterUI.text = "Place the pages at the shrine...";
         }
     }
     
