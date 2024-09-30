@@ -19,6 +19,9 @@ public class FakeScarecrow : MonoBehaviour
         playerMovement = FindObjectOfType<PlayerMovement>(); 
         active = true;
         wasSeen = false;
+        lookedAt = false;
+
+        Debug.Log("Here we go!");
     }
 
      private void Update()
@@ -34,26 +37,29 @@ public class FakeScarecrow : MonoBehaviour
         if(CalculateDistanceFromPlayer() >= maxDetectionDistance)
         {
             lookedAt = false;
+            Debug.Log("I'm too far!");
         }
         else
         {
+            Debug.Log(Camera.main.name);
             planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
             lookedAt = GeometryUtility.TestPlanesAABB(planes, lookCollider.bounds);
 
             if(lookedAt)
             {
+                Debug.Log("You see me!");
                 wasSeen = true;
             }
         }
 
-        //TEST
         if(!lookedAt && wasSeen)
         {
+            Debug.Log("Bye bye!");
             Destroy(gameObject);
         }
         if(lookedAt && !wasSeen)
         {
-            //TEST
+            Debug.Log("You're looking straight at me!");
             wasSeen = true;
         }
     }
