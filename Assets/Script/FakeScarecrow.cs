@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Scarecrow : MonoBehaviour
+public class FakeScarecrow : MonoBehaviour
 {
     private bool active;
     private bool lookedAt;
@@ -11,13 +11,14 @@ public class Scarecrow : MonoBehaviour
     [SerializeField] private BoxCollider lookCollider;
 
 
-    private bool testLook;
+    private bool wasSeen;
 
     // Start is called before the first frame update
     private void Start()
     {
-        playerMovement = FindObjectOfType<PlayerMovement>();  
+        playerMovement = FindObjectOfType<PlayerMovement>(); 
         active = true;
+        wasSeen = false;
     }
 
      private void Update()
@@ -25,15 +26,6 @@ public class Scarecrow : MonoBehaviour
         if(active)
         {
             TestLookedAt();
-
-            if(lookedAt)
-            {
-                OnSightBehaviour();
-            }
-            else
-            {
-                OutOfSightBehaviour();
-            }
         }
     }
 
@@ -47,20 +39,24 @@ public class Scarecrow : MonoBehaviour
         {
             planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
             lookedAt = GeometryUtility.TestPlanesAABB(planes, lookCollider.bounds);
+
+            if(lookedAt)
+            {
+                wasSeen = true;
+            }
+        }
+
+        //TEST
+        if(!lookedAt && wasSeen)
+        {
+            Destroy(gameObject);
+        }
+        if(lookedAt && !wasSeen)
+        {
+            //TEST
+            wasSeen = true;
         }
     }
-
-    private void OnSightBehaviour()
-    {
-        //STAY PUT
-    }
-
-    private void OutOfSightBehaviour()
-    {
-        //APPROACH PLAYER
-        //DISAPPEAR TO REAPPEAR AT A LATER TIME
-    }
-
     private float CalculateDistanceFromPlayer()
     {
         return Mathf.Abs((transform.position - playerMovement.transform.position).magnitude);
