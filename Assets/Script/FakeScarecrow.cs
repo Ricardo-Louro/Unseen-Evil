@@ -20,8 +20,6 @@ public class FakeScarecrow : MonoBehaviour
         active = true;
         wasSeen = false;
         lookedAt = false;
-
-        Debug.Log("Here we go!");
     }
 
      private void Update()
@@ -37,7 +35,6 @@ public class FakeScarecrow : MonoBehaviour
         if(CalculateDistanceFromPlayer() >= maxDetectionDistance)
         {
             lookedAt = false;
-            Debug.Log("I'm too far!");
         }
         else
         {
@@ -47,19 +44,16 @@ public class FakeScarecrow : MonoBehaviour
 
             if(lookedAt)
             {
-                Debug.Log("You see me!");
                 wasSeen = true;
             }
         }
 
         if(!lookedAt && wasSeen)
         {
-            Debug.Log("Bye bye!");
             Destroy(gameObject);
         }
         if(lookedAt && !wasSeen)
         {
-            Debug.Log("You're looking straight at me!");
             wasSeen = true;
         }
     }
