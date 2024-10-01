@@ -103,6 +103,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -100
       objectReference: {fileID: 0}
+    - target: {fileID: 3545046421299738353, guid: 773ab1f42cc6b094b8be476d730ab58e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545046421299738353, guid: 773ab1f42cc6b094b8be476d730ab58e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545046421299738353, guid: 773ab1f42cc6b094b8be476d730ab58e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545046421299738353, guid: 773ab1f42cc6b094b8be476d730ab58e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 3911455068833472466, guid: 773ab1f42cc6b094b8be476d730ab58e,
         type: 3}
       propertyPath: m_Name
@@ -220,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65928b7aa40815242846def27a1fa550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoints: []
   maxDetectionDistance: 15
   lookCollider: {fileID: 8199019175294581715}
 --- !u!195 &5421450798504463371

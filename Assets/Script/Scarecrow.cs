@@ -6,6 +6,8 @@ public class Scarecrow : MonoBehaviour
     private bool active;
     private bool lookedAt;
 
+    [SerializeField] private Transform[] spawnPoints;
+
     private Plane[] planes;
     [SerializeField] private float maxDetectionDistance;
     [SerializeField] private BoxCollider lookCollider;
@@ -14,6 +16,8 @@ public class Scarecrow : MonoBehaviour
     private Transform playerTransform;
     private LayerMask whatIsGround;
     private LayerMask whatIsPlayer;
+
+    private float lastTimeSighted;
 
 
     private bool testLook;
@@ -24,6 +28,7 @@ public class Scarecrow : MonoBehaviour
         playerTransform = FindObjectOfType<PlayerMovement>().transform;
         agent = GetComponent<NavMeshAgent>();
         active = true;
+        lastTimeSighted = Time.time;
     }
 
      private void Update()
@@ -49,10 +54,8 @@ public class Scarecrow : MonoBehaviour
         {
             if(lookedAt)
             {
-                //Teleport away
+                TeleportToSpawn();
             }
-
-            lookedAt = false;
         }
         else
         {
@@ -63,6 +66,7 @@ public class Scarecrow : MonoBehaviour
 
     private void OnSightBehaviour()
     {
+        lastTimeSighted = Time.time;
         agent.isStopped = true;
     }
 
@@ -70,6 +74,11 @@ public class Scarecrow : MonoBehaviour
     {
         agent.isStopped = false;
         agent.SetDestination(playerTransform.position);
+
+        if(Time.time - lastTimeSighted >= 60f)
+        {
+            TeleportToSpawn();
+        }
     }
 
     private float CalculateDistanceFromPlayer()
@@ -84,6 +93,17 @@ public class Scarecrow : MonoBehaviour
         if(player != null && !lookedAt)
         {
             //player.Die();
+        }
+    }
+
+    private void TeleportToSpawn()
+    {
+        Vector3 spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
+
+        if (Mathf.Abs((spawnPoint - playerTransform.position).magnitude) >= maxDetectionDistance)
+        {
+            transform.position = spawnPoint;
+            lookedAt = false;
         }
     }
 }
