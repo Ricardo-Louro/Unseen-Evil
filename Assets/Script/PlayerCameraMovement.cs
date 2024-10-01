@@ -8,8 +8,8 @@ public class PlayerCameraMovement : MonoBehaviour
     [SerializeField] private float heightOffset;
     [SerializeField] private float mouseSensitivity;
 
-    private float rotY = 0;
-    private float rotX = 0;
+    private float rotY;
+    private float rotX;
 
     private void Start()
     {
@@ -17,6 +17,9 @@ public class PlayerCameraMovement : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        rotX = transform.eulerAngles.x;
+        rotY = transform.eulerAngles.y;
     }
 
     private void Update()

@@ -22,9 +22,7 @@ public class Inventory : MonoBehaviour
     {
         if(currentPageCount >= totalPageCount)
         {
-            Debug.Log("All pages obtained");
-            FindObjectOfType<PortraitAssembly>().enabled = true;
-            pageCounterUI.text = "Place the pages at the shrine...";
+            pageCounterUI.text = "All pages obtained...";
         }
     }
     

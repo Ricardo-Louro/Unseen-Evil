@@ -11,6 +11,7 @@ public class Scarecrow : MonoBehaviour
     private Plane[] planes;
     [SerializeField] private float maxDetectionDistance;
     [SerializeField] private BoxCollider lookCollider;
+    private AudioSource audioSource;
 
     private NavMeshAgent agent;
     private Transform playerTransform;
@@ -18,6 +19,13 @@ public class Scarecrow : MonoBehaviour
     private LayerMask whatIsPlayer;
 
     private float lastTimeSighted;
+
+    private float maxVolume = 1f;
+    private float minVolume = 0f;
+    private float minAudioDistance = 0f;
+    private float maxAudioDistance = 20f;
+
+    private float distanceToPlayer;
 
 
     private bool testLook;
@@ -27,14 +35,18 @@ public class Scarecrow : MonoBehaviour
     {
         playerTransform = FindObjectOfType<PlayerMovement>().transform;
         agent = GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
         active = true;
         lastTimeSighted = Time.time;
+        distanceToPlayer = CalculateDistanceFromPlayer();
     }
 
      private void Update()
     {
         if(active)
         {
+            distanceToPlayer = CalculateDistanceFromPlayer();
+            AdaptVolumeToDistance();
             TestLookedAt();
 
             if(lookedAt)
@@ -50,9 +62,9 @@ public class Scarecrow : MonoBehaviour
 
     private void TestLookedAt()
     {
-        if(CalculateDistanceFromPlayer() >= maxDetectionDistance)
+        if(distanceToPlayer >= maxDetectionDistance)
         {
-            if(lookedAt)
+            if(lookedAt && distanceToPlayer >= maxAudioDistance)
             {
                 TeleportToSpawn();
             }
@@ -77,6 +89,7 @@ public class Scarecrow : MonoBehaviour
 
         if(Time.time - lastTimeSighted >= 60f)
         {
+            lastTimeSighted = Time.time;
             TeleportToSpawn();
         }
     }
@@ -100,10 +113,28 @@ public class Scarecrow : MonoBehaviour
     {
         Vector3 spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
 
-        if (Mathf.Abs((spawnPoint - playerTransform.position).magnitude) >= maxDetectionDistance)
+        if (Mathf.Abs((spawnPoint - playerTransform.position).magnitude) >= maxAudioDistance)
         {
             transform.position = spawnPoint;
             lookedAt = false;
         }
+    }
+
+    private void AdaptVolumeToDistance()
+    {
+        float audioVolume;
+
+        audioVolume = (((maxVolume - minVolume) / (minAudioDistance - maxAudioDistance)) * (distanceToPlayer - maxAudioDistance)) + minVolume;
+
+        if (audioVolume < minVolume)
+        {
+            audioVolume = minVolume;
+        }
+        else if (audioVolume > maxVolume)
+        {
+            audioVolume = maxVolume;
+        }
+
+        audioSource.volume = audioVolume;
     }
 }
