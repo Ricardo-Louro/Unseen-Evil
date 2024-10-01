@@ -38,7 +38,6 @@ public class FakeScarecrow : MonoBehaviour
         }
         else
         {
-            Debug.Log(Camera.main.name);
             planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
             lookedAt = GeometryUtility.TestPlanesAABB(planes, lookCollider.bounds);
 

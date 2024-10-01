@@ -1,14 +1,19 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Scarecrow : MonoBehaviour
 {
     private bool active;
     private bool lookedAt;
 
-    private PlayerMovement playerMovement;
     private Plane[] planes;
     [SerializeField] private float maxDetectionDistance;
     [SerializeField] private BoxCollider lookCollider;
+
+    private NavMeshAgent agent;
+    private Transform playerTransform;
+    private LayerMask whatIsGround;
+    private LayerMask whatIsPlayer;
 
 
     private bool testLook;
@@ -16,7 +21,8 @@ public class Scarecrow : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        playerMovement = FindObjectOfType<PlayerMovement>();  
+        playerTransform = FindObjectOfType<PlayerMovement>().transform;
+        agent = GetComponent<NavMeshAgent>();
         active = true;
     }
 
@@ -41,6 +47,11 @@ public class Scarecrow : MonoBehaviour
     {
         if(CalculateDistanceFromPlayer() >= maxDetectionDistance)
         {
+            if(lookedAt)
+            {
+                //Teleport away
+            }
+
             lookedAt = false;
         }
         else
@@ -52,17 +63,27 @@ public class Scarecrow : MonoBehaviour
 
     private void OnSightBehaviour()
     {
-        //STAY PUT
+        agent.isStopped = true;
     }
 
     private void OutOfSightBehaviour()
     {
-        //APPROACH PLAYER
-        //DISAPPEAR TO REAPPEAR AT A LATER TIME
+        agent.isStopped = false;
+        agent.SetDestination(playerTransform.position);
     }
 
     private float CalculateDistanceFromPlayer()
     {
-        return Mathf.Abs((transform.position - playerMovement.transform.position).magnitude);
+        return Mathf.Abs((transform.position - playerTransform.position).magnitude);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        PlayerMovement player = collision.collider.GetComponent<PlayerMovement>();
+
+        if(player != null && !lookedAt)
+        {
+            //player.Die();
+        }
     }
 }
