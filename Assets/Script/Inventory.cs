@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Inventory : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class Inventory : MonoBehaviour
     {
         if(currentPageCount >= totalPageCount)
         {
-            pageCounterUI.text = "All pages obtained...";
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
     
