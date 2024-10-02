@@ -4,19 +4,39 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject scarecrow;
-    [SerializeField] private GameObject light;
+    [SerializeField] private GameObject spotlight;
 
     private float lastTimeToggled;
-    [SerializeField] private float cooldownTimer;
+    private float cooldownTimer = 8.3f;
+    private float lightOffDuration = .7f;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
+
+        lastTimeToggled = Time.time;
     }
 
     private void Update()
     {
+        if(spotlight.activeSelf)
+        {
+            if (Time.time - lastTimeToggled >= cooldownTimer)
+            {
+                lastTimeToggled = Time.time;
+                spotlight.SetActive(false);
+            }
+        }
+        else
+        {
+            if(Time.time - lastTimeToggled >= lightOffDuration)
+            {
+                lastTimeToggled = Time.time;
+                scarecrow.SetActive(!scarecrow.activeSelf);
+                spotlight.SetActive(true);
+            }
+        }
     }
 
     public void StartGame()

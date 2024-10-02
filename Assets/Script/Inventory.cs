@@ -11,11 +11,14 @@ public class Inventory : MonoBehaviour
     private int currentPageCount = 0;
     private int totalPageCount;
 
+    [SerializeField] private GameObject secondScarecrow;
+
     public void ObtainPage(PortraitPiece piece)
     {
         pages[piece] = true;
         currentPageCount += 1;
         UpdateUI();
+        CheckForScarecrowActivation();
         CheckCompletion();
     }
 
@@ -36,5 +39,13 @@ public class Inventory : MonoBehaviour
     {
         totalPageCount += 1;
         UpdateUI();
+    }
+
+    private void CheckForScarecrowActivation()
+    {
+        if(currentPageCount == 3)
+        {
+            secondScarecrow.SetActive(true);
+        }
     }
 }

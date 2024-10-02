@@ -10,6 +10,8 @@ public class FakeScarecrow : MonoBehaviour
     [SerializeField] private float maxDetectionDistance;
     [SerializeField] private BoxCollider lookCollider;
 
+    [SerializeField] private GameObject firstScarecrow;
+
 
     private bool wasSeen;
 
@@ -49,6 +51,7 @@ public class FakeScarecrow : MonoBehaviour
 
         if(!lookedAt && wasSeen)
         {
+            firstScarecrow.SetActive(true);
             Destroy(gameObject);
         }
         if(lookedAt && !wasSeen)
