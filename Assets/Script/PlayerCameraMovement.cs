@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerCameraMovement : MonoBehaviour
 {
+    public bool active = true; 
     private PlayerMovement playerMovement;
 
     [SerializeField] private float heightOffset;
@@ -24,9 +25,12 @@ public class PlayerCameraMovement : MonoBehaviour
 
     private void Update()
     {
-        SetCameraPosition();
-        SetCameraRotation();
-        playerMovement.SetPlayerRotation(transform.eulerAngles.y);
+        if(active)
+        {
+            SetCameraPosition();
+            SetCameraRotation();
+            playerMovement.SetPlayerRotation(transform.eulerAngles.y);
+        }
         
     }
 

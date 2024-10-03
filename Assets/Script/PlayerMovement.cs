@@ -1,8 +1,11 @@
+using System.ComponentModel.Design;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+
+    public bool active = true;
 
     private Rigidbody rb;
 
@@ -15,12 +18,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        GetMoveDirection();
+        if(active)
+        {
+            GetMoveDirection();
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 
     private void FixedUpdate()
     {
-        AddSpeed();
+        if(active)
+        {
+            AddSpeed();
+        }
     }
 
     private void GetMoveDirection()

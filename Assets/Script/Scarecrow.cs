@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class Scarecrow : MonoBehaviour
 {
-    private bool active;
+    public bool active = true;
     private bool lookedAt;
 
     [SerializeField] private Transform[] spawnPoints;
@@ -36,7 +36,6 @@ public class Scarecrow : MonoBehaviour
         playerTransform = FindObjectOfType<PlayerMovement>().transform;
         agent = GetComponent<NavMeshAgent>();
         audioSource = GetComponent<AudioSource>();
-        active = true;
         lastTimeSighted = Time.time;
         distanceToPlayer = CalculateDistanceFromPlayer();
     }
@@ -57,6 +56,11 @@ public class Scarecrow : MonoBehaviour
             {
                 OutOfSightBehaviour();
             }
+        }
+        else
+        {
+            agent.isStopped = true;
+            lastTimeSighted += Time.deltaTime;
         }
     }
 
@@ -124,7 +128,7 @@ public class Scarecrow : MonoBehaviour
     {
         float audioVolume;
 
-        audioVolume = (((maxVolume - minVolume) / (minAudioDistance - maxAudioDistance)) * (distanceToPlayer - maxAudioDistance)) + minVolume;
+        audioVolume = (maxVolume - minVolume) / (minAudioDistance - maxAudioDistance) * (distanceToPlayer - maxAudioDistance) + minVolume;
 
         if (audioVolume < minVolume)
         {
