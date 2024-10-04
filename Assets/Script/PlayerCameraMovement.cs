@@ -8,6 +8,7 @@ public class PlayerCameraMovement : MonoBehaviour
 
     [SerializeField] private float heightOffset;
     [SerializeField] private float mouseSensitivity;
+    public float MouseSensitivity => mouseSensitivity;
 
     private float rotY;
     private float rotX;
@@ -49,5 +50,10 @@ public class PlayerCameraMovement : MonoBehaviour
         rotX = Mathf.Clamp(rotX, -85f, 85f);
 
         transform.eulerAngles = new Vector3(rotX, rotY, 0);
+    }
+
+    public void UpdateLookSensitivity(float value)
+    {
+        mouseSensitivity = value;
     }
 }
