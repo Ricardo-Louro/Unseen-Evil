@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -8,6 +9,7 @@ using UnityEngine.UI;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] pauseMenuComponents;
+    [SerializeField] private GameObject background;
     [SerializeField] private Slider brightnessSlider;
     [SerializeField] private TextMeshProUGUI brightnessTMP;
     private float brightnessDefaultValue;
@@ -101,7 +103,7 @@ public class PauseManager : MonoBehaviour
         gammaValue.w = brightnessSlider.value;
         lgg.gamma.value = gammaValue;
 
-        brightnessTMP.text = brightnessSlider.value.ToString();
+        brightnessTMP.text = Math.Round(brightnessSlider.value,1,MidpointRounding.AwayFromZero).ToString();
     }
 
     public void ResetBrightness()
@@ -113,7 +115,7 @@ public class PauseManager : MonoBehaviour
     private void ChangeVolume()
     {
         AudioListener.volume = volumeSlider.value;
-        volumeTMP.text = volumeSlider.value.ToString();
+        volumeTMP.text = Math.Round(volumeSlider.value, 1, MidpointRounding.AwayFromZero).ToString();
     }
 
     public void ResetVolume()
@@ -125,12 +127,17 @@ public class PauseManager : MonoBehaviour
     private void ChangeLookSense()
     {
         playerCameraMovement.UpdateLookSensitivity(lookSenseSlider.value);
-        lookSenseTMP.text = lookSenseSlider.value.ToString();
+        lookSenseTMP.text = Math.Round(lookSenseSlider.value, 1, MidpointRounding.AwayFromZero).ToString();
     }
 
     public void ResetLookSense()
     {
         lookSenseSlider.value = lookSenseDefaultValue;
         lookSenseTMP.text = lookSenseDefaultValue.ToString();
+    }
+
+    public void ToggleBackground()
+    {
+        background.SetActive(!background.activeSelf);
     }
 }
