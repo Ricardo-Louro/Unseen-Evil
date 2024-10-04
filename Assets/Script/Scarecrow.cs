@@ -27,6 +27,7 @@ public class Scarecrow : MonoBehaviour
 
     private float distanceToPlayer;
 
+    private Rigidbody rb;
 
     private bool testLook;
 
@@ -38,6 +39,8 @@ public class Scarecrow : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         lastTimeSighted = Time.time;
         distanceToPlayer = CalculateDistanceFromPlayer();
+
+        rb = GetComponent<Rigidbody>();
     }
 
      private void Update()
@@ -84,6 +87,7 @@ public class Scarecrow : MonoBehaviour
     {
         lastTimeSighted = Time.time;
         agent.isStopped = true;
+        rb.velocity = Vector3.zero;
     }
 
     private void OutOfSightBehaviour()
