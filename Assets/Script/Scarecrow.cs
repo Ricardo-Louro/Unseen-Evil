@@ -25,6 +25,7 @@ public class Scarecrow : MonoBehaviour
     private float minAudioDistance = 0f;
     private float maxAudioDistance = 20f;
 
+    [SerializeField] private float killDistance;
     private float distanceToPlayer;
 
     private Rigidbody rb;
@@ -92,6 +93,11 @@ public class Scarecrow : MonoBehaviour
 
     private void OutOfSightBehaviour()
     {
+        if(distanceToPlayer <= killDistance)
+        {
+            Camera.main.GetComponent<Animator>().SetTrigger("Death");
+        }
+
         agent.isStopped = false;
         agent.SetDestination(playerTransform.position);
 
@@ -105,16 +111,6 @@ public class Scarecrow : MonoBehaviour
     private float CalculateDistanceFromPlayer()
     {
         return Mathf.Abs((transform.position - playerTransform.position).magnitude);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        PlayerMovement player = collision.collider.GetComponent<PlayerMovement>();
-
-        if(player != null && !lookedAt)
-        {
-            //player.Die();
-        }
     }
 
     private void TeleportToSpawn()

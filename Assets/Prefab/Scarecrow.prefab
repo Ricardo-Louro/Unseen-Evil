@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65928b7aa40815242846def27a1fa550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -258,6 +259,7 @@ MonoBehaviour:
   - {fileID: 0}
   maxDetectionDistance: 15
   lookCollider: {fileID: 8199019175294581715}
+  killDistance: 2
 --- !u!195 &5421450798504463371
 NavMeshAgent:
   m_ObjectHideFlags: 0
