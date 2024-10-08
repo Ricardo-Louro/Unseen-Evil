@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCameraMovement : MonoBehaviour
@@ -12,6 +11,12 @@ public class PlayerCameraMovement : MonoBehaviour
 
     private float rotY;
     private float rotX;
+
+    [SerializeField] private AudioSource heartbeatAudioSource;
+    private float maxVolume = 1f;
+    private float minVolume = 0f;
+    private float minAudioDistance = 0f;
+    private float maxAudioDistance = 25f;
 
     private void Start()
     {
@@ -31,6 +36,7 @@ public class PlayerCameraMovement : MonoBehaviour
             SetCameraPosition();
             SetCameraRotation();
             playerMovement.SetPlayerRotation(transform.eulerAngles.y);
+            AdaptVolumeToDistance();
         }
         
     }
@@ -55,5 +61,25 @@ public class PlayerCameraMovement : MonoBehaviour
     public void UpdateLookSensitivity(float value)
     {
         mouseSensitivity = value;
+    }
+
+    private void AdaptVolumeToDistance()
+    {
+        if (heartbeatAudioSource != null)
+        {
+            float audioVolume;
+            audioVolume = (maxVolume - minVolume) / (minAudioDistance - maxAudioDistance) * ((float)PortraitPiece.closestPage[1] - maxAudioDistance) + minVolume;
+
+            if (audioVolume < minVolume)
+            {
+                audioVolume = minVolume;
+            }
+            else if (audioVolume > maxVolume)
+            {
+                audioVolume = maxVolume;
+            }
+
+            heartbeatAudioSource.volume = audioVolume;
+        }
     }
 }

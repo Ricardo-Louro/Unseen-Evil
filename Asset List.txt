@@ -1,0 +1,17 @@
+Models:
+	Scarecrow: https://sketchfab.com/3d-models/scarecrow-dd66376c24f246f28b10a67f047b8d6a
+	Fence: https://sketchfab.com/3d-models/fence-11mb-d23cc8cf3a8347398c49a1532dcec114
+	Pages: https://sketchfab.com/3d-models/78-slender-man-pages-25a89a390b07477d908f0a0860cfc20a
+	Tree:
+		- https://sketchfab.com/3d-models/dead-tree-33ccce6111604656a4b5709483670ec3
+		- https://sketchfab.com/3d-models/trees-eed7470843504aa592514554a6100fbc
+		- https://sketchfab.com/3d-models/trees-dbd3f20966de4cae9170413b9c6f891d
+		- https://sketchfab.com/3d-models/tree-1d26dcc1af0c4a06a95c459b7ca4cf6f
+		- https://sketchfab.com/3d-models/dead-tree-2525903dfa4f445bbae083a397fdbb2d
+
+Sounds:
+	Main Menu: https://www.youtube.com/watch?v=xAO3x-Uhfoo&ab_channel=ESNProductions
+	Ambiance 1: https://youtu.be/1nD3Sp_saz4?si=wPYGdpPObFQ04t9v
+	Ambiance 2: https://www.youtube.com/watch?v=coPN2irc9a4&ab_channel=Martia%27sMuses
+	Heartbeat: https://youtu.be/gJpT_wHZeF8?si=cYy7YioW3yrEdUIG
+	Footsteps: https://youtu.be/7s_jFeWi-gc?si=gJEaE4WE8XSpScWv

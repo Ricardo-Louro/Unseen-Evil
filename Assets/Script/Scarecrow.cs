@@ -63,6 +63,7 @@ public class Scarecrow : MonoBehaviour
         }
         else
         {
+            agent.SetDestination(transform.position);
             agent.isStopped = true;
             lastTimeSighted += Time.deltaTime;
         }
@@ -87,8 +88,8 @@ public class Scarecrow : MonoBehaviour
     private void OnSightBehaviour()
     {
         lastTimeSighted = Time.time;
+        agent.SetDestination(transform.position);
         agent.isStopped = true;
-        rb.velocity = Vector3.zero;
     }
 
     private void OutOfSightBehaviour()

@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,8 +8,10 @@ public class IntroSkipper : MonoBehaviour
     private void Start()
     {
         timer = Time.time;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
-    // Update is called once per frame
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
