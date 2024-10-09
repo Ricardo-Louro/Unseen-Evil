@@ -7,6 +7,11 @@ public class PortraitPiece : Interactive
 
     public static object[] closestPage = new object[2];
 
+    private void Awake()
+    {
+        closestPage[0] = null;
+        closestPage[1] = null;
+    }
     private void Start()
     {
         playerTransform = FindObjectOfType<PlayerMovement>().transform;
