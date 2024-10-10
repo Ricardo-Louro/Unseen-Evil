@@ -2417,6 +2417,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 1.8907812
       objectReference: {fileID: 0}
+    - target: {fileID: 5895075368317997620, guid: 4a3fa7af4f8ef0445bb69985f4509a31,
+        type: 3}
+      propertyPath: pageAudio
+      value: 
+      objectReference: {fileID: 860546073}
     - target: {fileID: 6077637915837357437, guid: 4a3fa7af4f8ef0445bb69985f4509a31,
         type: 3}
       propertyPath: m_Name
@@ -3119,6 +3124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &860546073 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7883165738850370041, guid: b24576a83f55fbd469a2529d5c8c8210,
+    type: 3}
+  m_PrefabInstance: {fileID: 860546071}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &860839266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3859,6 +3870,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.9058171
       objectReference: {fileID: 0}
+    - target: {fileID: 7749820943131079798, guid: 1c0ee9f6d62154f41a8d2c8ebf854dad,
+        type: 3}
+      propertyPath: pageAudio
+      value: 
+      objectReference: {fileID: 860546073}
     - target: {fileID: 8888976522403290113, guid: 1c0ee9f6d62154f41a8d2c8ebf854dad,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4585,6 +4601,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5498686680647863541, guid: fc531f5b74dd13c4ebc5f1bd1f307e19,
+        type: 3}
+      propertyPath: pageAudio
+      value: 
+      objectReference: {fileID: 860546073}
     - target: {fileID: 8311220302477389403, guid: fc531f5b74dd13c4ebc5f1bd1f307e19,
         type: 3}
       propertyPath: m_Name
@@ -5163,6 +5184,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Page1
       objectReference: {fileID: 0}
+    - target: {fileID: 8636564551853569487, guid: 8421aefe765f9ba4197c3c898d60aa92,
+        type: 3}
+      propertyPath: pageAudio
+      value: 
+      objectReference: {fileID: 860546073}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5246,6 +5272,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8301689467921972026, guid: 264d552d366411e4bab7e6ee0b9f27d0,
+        type: 3}
+      propertyPath: pageAudio
+      value: 
+      objectReference: {fileID: 860546073}
     - target: {fileID: 8359569024264844117, guid: 264d552d366411e4bab7e6ee0b9f27d0,
         type: 3}
       propertyPath: m_Size.x

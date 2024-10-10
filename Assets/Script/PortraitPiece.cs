@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PortraitPiece : Interactive
 {
+    [SerializeField] private AudioSource pageAudio;
     private Inventory inventory;
     private Transform playerTransform;
 
@@ -21,6 +22,7 @@ public class PortraitPiece : Interactive
 
     public override void Interact()
     {
+        pageAudio.Play();
         inventory.ObtainPage(this);
 
         if((PortraitPiece)closestPage[0] == this)
